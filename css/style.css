@@ -75,9 +75,9 @@ body .encabezado .titulo h1 {
   width: 100%;
 }
 .resultadosContenedor .titulos {
-  margin-left: 10%;
+  margin-left: 80px;
   margin-top: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 .resultadosContenedor .titulos h3 {
   font-size: 25px;
@@ -85,6 +85,61 @@ body .encabezado .titulo h1 {
 .resultadosContenedor .titulos h4 {
   font-size: 14px;
   color: gray;
+}
+
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px;
+  min-height: 300px;
+}
+
+.no-results {
+  margin-left: 10px;
+}
+
+.comic {
+  width: calc(20% - 20px);
+  margin: 0 10px 40px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comic-thumbnail {
+  height: 100%;
+  margin-bottom: 20px;
+  transform: translateY(0);
+  transition: 0.2s;
+  display: flex;
+  justify-content: center;
+}
+
+.comic-img-container {
+  flex-grow: 1;
+}
+
+.comic-title {
+  text-align: center;
+  margin-top: 10px;
+}
+
+/*PAGINACION*/
+.paginacion {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.paginacion button {
+  background-color: black;
+  border: none;
+  color: white;
+  font-size: 20px;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
 }
 
 /*# sourceMappingURL=style.css.map */

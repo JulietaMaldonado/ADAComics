@@ -9,6 +9,7 @@ const baseUrl = `https://gateway.marvel.com/v1/public/`;
 let offset = 0;
 
 const getSearchParams = (isSearch) => {
+  let url = baseUrl;
   let searchParams = `?apikey=${apiPublic}&offset=${offset}`;
   if (!isSearch) {
     return searchParams;
@@ -33,7 +34,8 @@ const getApiUrl = (resourse, resourseId, subResourse) => {
 
 const fetchUrl = async (url) => {
   const response = await fetch(url);
-  console.log(response);
+  const json = await response.json();
+  return json;
 };
 
 const fetchComics = async () => {
@@ -41,11 +43,12 @@ const fetchComics = async () => {
     data: { results, total },
   } = await fetchUrl(getApiUrl("comics"));
   printComics(results);
+  console.log(results);
 };
 
 const printComics = (comics) => {
-  if (comics.length === 0) {
-    results.innerHtml = "<h4 No hemos encontrado ningun resultado</h4>";
+  if (comics.length == 0) {
+    results.innerHtml = `<h4> No hemos encontrado ningun resultado</h4>`;
   }
   for (const comic of comics) {
     const comicCard = document.createElement("div");
@@ -54,10 +57,11 @@ const printComics = (comics) => {
     comicCard.onclick = () => {
       console.log(comic, comic.id);
     };
+
     comicCard.innerHTML = `<div class="comic-img-container">
-    <img src="${comic.thumbnail.path}/portrait_uncanny${comic.thumbnail.extension}" alt="" class="comic-thumbnail" />
+    <img src="${comic.thumbnail.path}/portrait_fantastic.${comic.thumbnail.extension}" alt="${comic.title}" class="comic-thumbnail" />
   </div>
-  <h3 class="comic-title">${comic.title}</h3>
+  <h6 class="comic-title">${comic.title}</h6>
 `;
     results.append(comicCard);
   }

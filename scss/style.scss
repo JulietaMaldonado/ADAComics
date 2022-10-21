@@ -71,9 +71,9 @@ body {
 .resultadosContenedor {
   width: 100%;
   .titulos {
-    margin-left: 10%;
+    margin-left: 80px;
     margin-top: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     h3 {
       font-size: 25px;
     }
@@ -81,5 +81,56 @@ body {
       font-size: 14px;
       color: gray;
     }
+  }
+}
+
+//TARJETA COMICS
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px;
+  min-height: 300px;
+}
+.no-results {
+  margin-left: 10px;
+}
+.comic {
+  width: calc(100% / 5 - 2 * 10px);
+  margin: 0 10px 40px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.comic-thumbnail {
+  height: 100%;
+  margin-bottom: 20px;
+  transform: translateY(0);
+  transition: 0.2s;
+  display: flex;
+  justify-content: center;
+}
+.comic-img-container {
+  flex-grow: 1;
+}
+.comic-title {
+  text-align: center;
+  margin-top: 10px;
+}
+
+/*PAGINACION*/
+.paginacion {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  button {
+    background-color: black;
+    border: none;
+    color: white;
+    font-size: 20px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
   }
 }
