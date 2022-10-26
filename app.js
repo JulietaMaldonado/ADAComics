@@ -67,6 +67,43 @@ const printComics = (comics) => {
   }
 };
 
+const fetchComic = async (comicId) => {
+  const {
+    data: {
+      results: [comic],
+    },
+  } = await fetchUrl(getApiUrl("comics", comicId));
+
+  const coverPath = `${comic.thumbnail.path}${comic.thumbnail.extension}`;
+  const releaseDate = new Intl.DateTimeFormat("es-Ar").format(
+    new Date(comic.dates.find((date) => date.type === "onsaleDate").date)
+  );
+  const writers = comic.creators.items
+    .filter((creator) => creator.role === "writer")
+    .map((creator) => creator.name)
+    .join(", ");
+  updateComicDetails(
+    coverPath,
+    comic.title,
+    releaseDate,
+    writers,
+    comic.description
+  );
+  showComicDetail();
+};
+
+const updateComicDetails = (img, title, releaseDate, writers, description) => {
+  comicCover.src = img;
+  comicTitle.innerHTML = title;
+  comicPublished.innerHTML = releaseDate;
+  comicWriters.innerHTML = writers;
+  comicDescription.innerHTML = description;
+};
+
+const showComicDetail = () => {
+  comicSection.classList.remove("hidden");
+};
+
 const search = () => {
   if (searchType.value === "comics") {
     fetchComics();
@@ -77,3 +114,41 @@ const inicio = () => {
   search();
 };
 window.onload = inicio;
+
+comics.forEach((comic) => {
+  const card = document.createElement("div");
+  const cardImg = document.createElement("img");
+  const cardBody = document.createElement("div");
+  const col = document.createElement("div");
+  const title = document.createElement("h2");
+
+  card.addEventListener("click", () => {});
+});
+
+/*const titleText = document.createTextNode(comic.title);
+
+card.appendChild(cardImg);
+card.appendChild(cardBody);
+col.appendChild(card);
+cardBody.appendChild(title);
+title.appendChild(titleText);
+
+card.classList.add("card");
+card.classList.add("card-img");
+card.classList.add("card");
+card.classList.add("card");
+card.classList.add("card");
+*/
+const loadDetail = (comic) => {
+  const comicDetail = document.getElementById("comic-detail");
+
+  const title = document.createElement("h3");
+  const text = document.createTextNode(comic.title);
+  const div = document.createElement("div");
+
+  title.appendChild(text);
+  div.appendChild(document.createTextNode(JSON.stringify(comic)));
+
+  comicDetail.appendChild(title);
+  comicDetail.appendChild(div);
+};

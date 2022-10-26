@@ -142,4 +142,8 @@ body .encabezado .titulo h1 {
   font-weight: 600;
 }
 
+.hidden {
+  display: none;
+}
+
 /*# sourceMappingURL=style.css.map */
