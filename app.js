@@ -55,7 +55,7 @@ const printComics = (comics) => {
     comicCard.tabIndex = 0;
     comicCard.classList.add("comic");
     comicCard.onclick = () => {
-      console.log(comic, comic.id);
+      loadDetail(comic);
     };
 
     comicCard.innerHTML = `<div class="comic-img-container">
@@ -115,40 +115,78 @@ const inicio = () => {
 };
 window.onload = inicio;
 
-comics.forEach((comic) => {
+const loadDetail = (comic) => {
+  const resultsContainer = document.getElementById("resultsContainer");
+  resultsContainer.classList.add("hidden");
+
+  const comicDetail = document.getElementById("comic-detail");
+
   const card = document.createElement("div");
   const cardImg = document.createElement("img");
   const cardBody = document.createElement("div");
-  const col = document.createElement("div");
-  const title = document.createElement("h2");
+  const col1 = document.createElement("div");
+  const col2 = document.createElement("div");
+  const column = document.createElement("div");
+  const cardTitle = document.createElement("h2");
+  const cardLabel1 = document.createElement("p");
+  const cardLabel2 = document.createElement("p");
+  const cardLabel3 = document.createElement("p");
+  const cardDate = document.createElement("p");
+  const cardCreator = document.createElement("p");
+  const cardDescription = document.createElement("p");
 
-  card.addEventListener("click", () => {});
-});
+  const title = document.createTextNode(comic.title);
+  const label1 = document.createTextNode("Publicado:");
+  const label2 = document.createTextNode("Guionistas:");
+  const label3 = document.createTextNode("Descripción:");
+  const date = document.createTextNode(comic.dates[0].date);
+  const creator = document.createTextNode(
+    comic.creators.items.length
+      ? comic.creators.items[0].name
+      : "No hay guionistas"
+  );
+  const description = document.createTextNode(comic.description);
 
-/*const titleText = document.createTextNode(comic.title);
+  cardImg.setAttribute(
+    "src",
+    `${comic.thumbnail.path}/portrait_fantastic.${comic.thumbnail.extension}`
+  );
 
-card.appendChild(cardImg);
-card.appendChild(cardBody);
-col.appendChild(card);
-cardBody.appendChild(title);
-title.appendChild(titleText);
+  comicDetail.classList.add("comic-detail");
+  card.classList.add("card");
+  cardImg.classList.add("card-img");
+  cardBody.classList.add("card-body");
+  column.classList.add("column");
+  col1.classList.add("col1");
+  col2.classList.add("col2");
+  cardLabel1.classList.add("label");
+  cardLabel2.classList.add("label");
+  cardLabel3.classList.add("label");
+  cardDate.classList.add("text");
+  cardCreator.classList.add("text");
+  cardDescription.classList.add("text");
 
-card.classList.add("card");
-card.classList.add("card-img");
-card.classList.add("card");
-card.classList.add("card");
-card.classList.add("card");
-*/
-const loadDetail = (comic) => {
-  const comicDetail = document.getElementById("comic-detail");
+  cardTitle.appendChild(title);
 
-  const title = document.createElement("h3");
-  const text = document.createTextNode(comic.title);
-  const div = document.createElement("div");
+  comicDetail.appendChild(column);
+  column.appendChild(card);
+  card.appendChild(cardBody);
+  cardBody.appendChild(col1);
+  cardBody.appendChild(col2);
+  col1.appendChild(cardImg);
+  col2.appendChild(cardTitle);
+  col2.appendChild(cardLabel1);
+  cardLabel1.appendChild(label1);
+  col2.appendChild(cardDate);
+  cardDate.appendChild(date);
 
-  title.appendChild(text);
-  div.appendChild(document.createTextNode(JSON.stringify(comic)));
+  col2.appendChild(cardLabel2);
+  cardLabel2.appendChild(label2);
+  col2.appendChild(cardCreator);
 
-  comicDetail.appendChild(title);
-  comicDetail.appendChild(div);
+  cardCreator.appendChild(creator);
+  col2.appendChild(cardLabel3);
+  cardLabel3.appendChild(label3);
+  col2.appendChild(cardDescription);
+  cardDescription.appendChild(description);
 };
