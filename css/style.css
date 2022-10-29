@@ -201,4 +201,13 @@ body .encabezado .titulo h1 {
   display: none;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
 /*# sourceMappingURL=style.css.map */
