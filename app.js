@@ -192,11 +192,6 @@ const loadDetail = (comic) => {
 const loadComics = async (page) => {
   const params = new URLSearchParams(window.location.search);
 
-  // const comicsRsponse = await getComics(
-  //     params.get('offset') ||  0,
-  //     params.get('order') || "title"
-  // );
-
   const comicsRsponse = await getComics((page - 1) * 20, "title");
 
   const data = comicsRsponse.data;
