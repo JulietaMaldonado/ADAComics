@@ -42,6 +42,7 @@ const fetchComics = async () => {
   } = await fetchUrl(getApiUrl("comics"));
   printComics(results);
   console.log(results);
+  return results
 };
 
 const printComics = (comics) => {
@@ -192,12 +193,9 @@ const loadDetail = (comic) => {
 const loadComics = async (page) => {
   const params = new URLSearchParams(window.location.search);
 
-  const comicsRsponse = await getComics((page - 1) * 20, "title");
+  const comics = await fetchComics((page - 1) * 20, "title");
 
-  const data = comicsRsponse.data;
-  const comics = data.results;
-
-  const results = document.getElementById("comics-results");
+  const results = document.getElementById("results");
   results.innerHTML = "";
   const backButton = document.getElementById("back-button");
   const container = document.createElement("div");
