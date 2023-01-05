@@ -2,6 +2,7 @@
 
 _Programas que contiene este trabajo:_
 • HTML
+• SCSS
 • CSS
 • API de Marvel
 • JavaScript
